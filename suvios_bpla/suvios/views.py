@@ -1,10 +1,14 @@
-
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, get_user_model
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_auth_oidc.views import perform_login
-from django.contrib.auth import get_user_model
+from django.contrib import messages
+
+User = get_user_model()
+
+def home(request):
+    return render(request, 'suvios/home.html')
 
 def register(request):
     if request.method == 'POST':
@@ -17,19 +21,19 @@ def register(request):
             user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, password=password)
             user.save()
             login(request, user)
-            return HttpResponseRedirect(reverse('secret_page'))
+            return HttpResponseRedirect(reverse('home'))
         else:
-            return render(request, 'suvios/signup.html', {'error_message': 'Passwords do not match'})
+            messages.error(request, 'Passwords do not match')
+            return render(request, 'suvios/signup.html')
     else:
         context = {}
         return render(request, 'suvios/signup.html', context=context)
 
 
-User = get_user_model()
-
 def google_register(request):
     # Redirect the user to the Google authorization endpoint
-    return perform_login(request, authorization_endpoint=OIDC_OP_AUTHORIZATION_ENDPOINT, scopes=['openid', 'email', 'profile'])
+    return redirect('https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>&scope=openid%20email%20profile')
+
 
 def google_callback(request):
     # Verify the Google authorization code
@@ -42,3 +46,20 @@ def google_callback(request):
         login(request, user)
     # Redirect the user back to the homepage
     return redirect('/')
+
+def login(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            messages.error(request, 'Invalid email or password')
+            return render(request, 'suvios/index.html')
+    else:
+        context = {}
+        return render(request, 'suvios/index.html', context=context)
+
+

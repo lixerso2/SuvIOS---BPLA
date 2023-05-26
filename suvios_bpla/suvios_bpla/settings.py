@@ -141,7 +141,7 @@ TEMPLATES = [
 
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        'DIRS': [BASE_DIR / 'suvios/templates'],
+        'DIRS': [BASE_DIR / 'templates'],
 
         'APP_DIRS': True,
 
@@ -199,7 +199,6 @@ DATABASES = {
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL='suvios.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -268,5 +267,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'suvios', 'static')]
+
 
 

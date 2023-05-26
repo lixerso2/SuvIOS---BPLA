@@ -19,16 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 import suvios.urls
 from django.conf.urls.static import static
-from suvios.views import ApiEndpoint
-from oidc_provider.views import ProviderInfoView
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/hello', ApiEndpoint.as_view()),
     path('', include('suvios.urls')),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path('.well-known/openid-configuration', ProviderInfoView.as_view()),
-    path('openid/', include('oidc_provider.urls', namespace='oidc_provider')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
