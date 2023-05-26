@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> СувИОС - БПЛА </title>
+
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.jpg' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawsom-all.min.css' %}">
+    <link rel="stylesheet" type="{% static 'assets/css/style.css' %}" />
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="container ">
+            <div class="row">
+                
+                <div class="col-sm-10 login-box">
+                    <div class="row">
+                       <div class="col-lg-4 col-md-5 box-de">
+                           <div class="small-logo">
+                                <i class="fab fa-asymmetrik"></i>Войдите
+                            </div>
+                            <div class="ditk-inf sup-oi">
+                                <h2 class="w-100">Уже есть аккаунт? </h2>
+                                <p>Просто войдите в свой аккаунт, нажав на кнопку "Войти"</p>
+                                <a href="{% url 'login' %}">
+                                    <button type="button" class="btn btn-outline-light">Войти</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 log-det">
+                            
+                            <h2>Создать аккаунт</h2>
+                            <a class="row">
+                                <ul>
+                                <li><a href="{% url 'google_register' %}"><i class="fab fa-google"></i></li></a>
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <p class="small-info">или используя электронную почту</p>
+                            </div>
+
+
+                            <div class="text-box-cont">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                        <i class="far fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Полное имя" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="far fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Электронная почта" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Пароль" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                               
+                                <div class="input-group center sup mb-3">
+                                    <button type="submit" class="btn btn-success btn-round">Зарегистрироваться</button>
+                                </div>    
+                            </div>
+                            
+
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/script.js' %}"></script>
+
+
+</html>
